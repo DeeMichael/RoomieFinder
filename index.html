@@ -18,10 +18,9 @@
 </head>
 
 <body  class="container" ng-controller="FinderController as findCtrl">
-  <h4>RoomieFinder Test</h4>
 
 <!-- NAV BAR -->
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default" style="margin-top:10px;">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -95,6 +94,23 @@
         </div><!-- panel-body -->
       </div><!-- panel panel-default -->
     </div><!-- col-sm-4 -->
+
+<!-- PEOPLE -->
+    <div class="col-sm-8">
+      <div class="row" ng-repeat="person in findCtrl.personArray">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-sm-4">
+              <img src="{{person.image}}" class="img-thumbnail"/>
+            </div>
+            <h5 class="text-center">Refine Search</h5>
+          </div><!-- panel-body -->
+        </div><!-- panel panel-default -->
+      </div><!-- row -->
+    </div><!-- col-sm-8 -->
+
+
+
   </div><!-- row -->
 
 

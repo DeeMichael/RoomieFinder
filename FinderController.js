@@ -64,7 +64,7 @@ function FinderController(){
 
   var kirby = new findCtrl.Person("Kirby", "Marshmallow", "752-752-9479", "drillkick@gmail.com", "I don't like being called a marshmallow so if no one calls me a marshmallow then everythings cool. I'm really into trying new foods. I've got a big mouth and I'm a enthusiastic foodie. As a roommate I won't take up a lot of space. I only have a few things. I'm pretty extroverted and I love to party so I'm very open to help host any event.", 0, 800, "February 15", 45, false, "pics/kirby.jpg")
 
-  var link = new findCtrl.Person("Link", "Hookshot", "065-236-2754", "triforce@gmail.com", "I'm looking for a place to stay temporarily for maybe just 6 months or possible a year. My hobbies include playing the sweet potato, throwing boomerangs, archery, fencing, fishing and cosplay.", 0, 1250, "March 1", 45, false, "pics/link.jpg")
+  var link = new findCtrl.Person("Link", "Hookshot", "065-236-2754", "triforce@gmail.com", "I'm looking for a place to stay temporarily for maybe just 6 months or possible a year. My hobbies include playing the sweet potato, throwing boomerangs, archery, fencing, fishing and cosplay.", 0, 1250, "March 1", 45, false, "pics/link.png")
 
   var lucario = new findCtrl.Person("Lucario", "Blue", "513-663-0921", "auraballs@gmail.com", "It's all about the aura. I'm looking for a place that has good vibes. I enjoy taichi, karate, meditation, and poke battles. My favorite color is blue.", 0, 800, "April 21", 45, false, "pics/lucario.jpg")
 

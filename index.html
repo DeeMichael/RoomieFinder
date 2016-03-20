@@ -17,9 +17,66 @@
 
 </head>
 
-<body ng-controller="FinderController as findCtrl">
+<body  class="container" ng-controller="FinderController as findCtrl">
   <h4>RoomieFinder Test</h4>
 
+<!-- NAV BAR -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Roomie Finder</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Log In</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+<!-- SEARCH BAR -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <div class="panel">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div><!-- input-group -->
+        </div><!-- panel -->
+      </div><!-- col-sm-4 col-sm-offset-4 -->
+    </div><!--row -->
+  </div><!-- container -->
+
+<!-- REFINE SEARCH -->
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h5 class="text-center">Refine Search</h5>
+          <span class="input-group">
+            <input type="checkbox" aria-label="..."> Smokes <br/>
+            <input type="range"  min="16" max="120" value="16"/> Min Age <br/>
+            <input type="range"  min="16" max="120" value="120"/> Max Age <br/>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -32,8 +89,6 @@
 </body>
 
 </html>
-
-
 
 
 

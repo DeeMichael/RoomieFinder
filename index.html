@@ -62,21 +62,40 @@
     </div><!--row -->
   </div><!-- container -->
 
-<!-- REFINE SEARCH -->
+<!-- REFINE SEARCH AND PEOPLE-->
   <div class="row">
+<!-- REFINE SEARCH -->
     <div class="col-sm-4">
       <div class="panel panel-default">
         <div class="panel-body">
           <h5 class="text-center">Refine Search</h5>
-          <span class="input-group">
-            <input type="checkbox" aria-label="..."> Smokes <br/>
-            <input type="range"  min="16" max="120" value="16"/> Min Age <br/>
-            <input type="range"  min="16" max="120" value="120"/> Max Age <br/>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="row" style="margin-bottom:5px;">
+            <div class="col-sm-6">
+              <input type="checkbox"> Smokes
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9 text-center">
+              Minimum Age
+              <input type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
+            </div>
+            <div class="col-sm-2 text-center">
+              <span ng-bind="findCtrl.minAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9 text-center">
+              Maximum Age
+              <input type="range"  min="16" max="120" ng-model="findCtrl.maxAge" value="120"/>
+            </div>
+            <div class="col-sm-2">
+              <span ng-bind="findCtrl.maxAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
+            </div>
+          </div>
+        </div><!-- panel-body -->
+      </div><!-- panel panel-default -->
+    </div><!-- col-sm-4 -->
+  </div><!-- row -->
 
 
 

@@ -6,6 +6,9 @@ function FinderController(){
 
 //  This is an array that will hold all the people objects.  I'm initializing the array as an empty array here.
 	findCtrl.personArray = []
+  findCtrl.minAge = 16
+  findCtrl.maxAge = 120
+  findCtrl.smokes = false
 
 //  Person constructor function.
 //  Arguments:

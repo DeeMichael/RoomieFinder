@@ -6,8 +6,8 @@
   <title>Roomie Finder</title>
 
   <!-- jquery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
-  <!-- Latest compiled and minified CSS -->
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <!-- bootstrap - Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <!-- bootstrap - Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -20,7 +20,7 @@
 <body  class="container" ng-controller="FinderController as findCtrl">
 
 <!-- NAV BAR -->
-  <nav class="navbar navbar-default" style="margin-top:10px;">
+  <nav class="navbar navbar-default" style="margin-top:10px;margin-bottom:10px;">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -49,8 +49,10 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-4 col-sm-offset-4">
-        <div class="panel">
+        <div class="panel text-center">
+          <span>Keyword Search</span>
           <div class="input-group">
+            <span></span>
             <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button">Go!</button>
@@ -61,7 +63,7 @@
     </div><!--row -->
   </div><!-- container -->
 
-<!-- REFINE SEARCH AND PEOPLE-->
+<!-- REFINE SEARCH AND PEOPLE SECTION-->
   <div class="row">
 <!-- REFINE SEARCH -->
     <div class="col-sm-4">
@@ -69,9 +71,17 @@
         <div class="panel-body">
           <h5 class="text-center">Refine Search</h5>
           <div class="row" style="margin-bottom:5px;">
-            <div class="container">
-              <input type="checkbox">
-              <span>Non-smoker</span>
+            <div class="col-sm-4" style="margin-right:0;margin-top:6px;">
+              <span>Smokes:</span>
+            </div>
+            <div class="col-sm-8">
+              <div class="form-group">
+                <select ng-model="findCtrl.smokes" class="form-control col-sm-4" >
+                  <option value="1">Non-Smoker</option>
+                  <option value="2">Smoker</option>
+                  <option value="3">Don't Care</option>
+                </select>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -79,7 +89,7 @@
               Minimum Age
               <input type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
             </div>
-            <div class="col-sm-2 text-center">
+            <div class="col-sm-2 text-center" style="padding-left:0;">
               <span ng-bind="findCtrl.minAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
             </div>
           </div>
@@ -88,8 +98,13 @@
               Maximum Age
               <input type="range"  min="16" max="120" ng-model="findCtrl.maxAge" value="120"/>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="padding-left:0;">
               <span ng-bind="findCtrl.maxAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
+            </div>
+          </div>
+          <div class="row"> <!-- APPLY FILTERS BUTTON -->
+            <div class="text-center" style="margin-top:5px;">
+              <button ng-click="findCtrl.smokesFilter(findCtrl.personArray)" type="button" class="btn btn-default">Apply Filters</button>
             </div>
           </div>
         </div><!-- panel-body -->
@@ -98,7 +113,10 @@
 
 <!-- PEOPLE -->
     <div class="col-sm-8">
-      <div class="row" ng-repeat="person in findCtrl.personArray">
+      <div class="panel panel-default">
+        <h5>{{findCtrl.resultString}}</h5>
+      </div>
+      <div class="row" ng-repeat="person in findCtrl.resultsArray">
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="col-sm-4">
@@ -114,7 +132,12 @@
                   <span>email: {{person.email}}</span>
                 </div>
               </div>
-            </div>
+              <div class="row">
+                <div class="col-sm-12" style="margin-top:5px;">
+                  <span>About: {{person.about}}</span>
+                </div>
+              </div>
+            </div><!-- col-sm-8 -->
           </div><!-- panel-body -->
         </div><!-- panel panel-default -->
       </div><!-- row -->
@@ -122,16 +145,21 @@
 
 
 
-  </div><!-- row -->
+  </div><!-- row --><!-- End of REFINE SEARCH AND PEOPLE SECTION-->
 
 
 
   <!-- Sourcing Angular 1.5.0 -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
   <!-- Source in module -->
   <script type="text/javascript" src="app.js"></script>
   <!-- Source in controller -->
   <script type="text/javascript" src="FinderController.js"></script>
+  <!-- Source in underscorejs from CDN -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+  <!-- Source in underscorejs local file -->
+  <script type="text/javascript" src="underscore.js"></script>
+
 </body>
 
 </html>

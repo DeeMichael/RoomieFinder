@@ -1,14 +1,17 @@
 angular.module('Finder', [])
   .controller('FinderController', FinderController)
 
-function FinderController(){
+function FinderController(_){
 	var findCtrl = this
 
 //  This is an array that will hold all the people objects.  I'm initializing the array as an empty array here.
 	findCtrl.personArray = []
   findCtrl.minAge = 16
   findCtrl.maxAge = 120
-  findCtrl.smokes = false
+  findCtrl.smokes = "3"         //1 = Non-smoker, 2 = smoker, 3 = don't care
+  findCtrl.resultsArray = []  //Array that's displayed after the search has been run.
+  findCtrl.resultString = ""
+  findCtrl.resultStringShow = false
 
 //  Person constructor function.
 //  Arguments:
@@ -95,6 +98,49 @@ function FinderController(){
 //  Placing people into personArray
   findCtrl.personArray.push(zelda, bowser, cFalc, dedede, diddy, dk, falco, fox, gameAndWatch, ganon, ike, jigs, kirby, link, lucario, lucas, luigi, mario, metaknight, mewtwo, peach, pika, rob, samus, sonic, wario, wiiFit, yoshi)
 
+  findCtrl.resultsArray = findCtrl.personArray // so at the start all the people are displayed.
+
+  findCtrl.smokesFilter = function(arrayOfPeople){
+    if (findCtrl.smokes == 2) {
+      findCtrl.resultsArray = smokeTrue(arrayOfPeople)
+    }
+    else if (findCtrl.smokes == 1) {
+      findCtrl.resultsArray = smokeFalse(arrayOfPeople)
+    }
+    else {
+      findCtrl.resultsArray = findCtrl.personArray
+      console.log("Filter is don't care")
+    }
+    if (findCtrl.resultsArray.length() > 1) {
+      findCtrl.resultString = "Displaying " + String(findCtrl.resultsArray.length()) + " results."
+      findCtrl.resultStringShow = true
+    }
+    else {
+      findCtrl.resultStringShow = false
+    }
+    console.log("Is this running?")
+  }
+
+  function smokeTrue(arrayOfPeople){
+    var resultArray = _.filter(arrayOfPeople, function(person){
+      return person.smokes == true
+    })
+    return resultArray
+  }
+  function smokeFalse(arrayOfPeople){
+    var resultArray = _.filter(arrayOfPeople, function(person){
+      return person.smokes == false
+    })
+    return resultArray
+  }
+
+
+
+
+
+  // console.log(_.filter(findCtrl.personArray, function(person) {
+  //   return person.smokes == true
+  // }))
 
 
 

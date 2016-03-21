@@ -1,6 +1,5 @@
 (function(){
 
-	angular
-		.module('RoomieFinder', ['Finder']);
+	angular.module('RoomieFinder', ['Finder','underscore'])
 
 })();

@@ -6,12 +6,13 @@ function FinderController(_){
 
 //  This is an array that will hold all the people objects.  I'm initializing the array as an empty array here.
 	findCtrl.personArray = []
-  findCtrl.minAge = 16
-  findCtrl.maxAge = 120
-  findCtrl.smokes = "3"         //1 = Non-smoker, 2 = smoker, 3 = don't care
-  findCtrl.resultsArray = []  //Array that's displayed after the search has been run.
-  findCtrl.resultString = ""
-  findCtrl.resultStringShow = false
+  findCtrl.maxPriceDOM = 100
+  findCtrl.minAge = 16              //default place holder for min age on slider
+  findCtrl.maxAge = 120             //default place holder for max age on slider
+  findCtrl.smokes = "3"             //1 = Non-smoker, 2 = smoker, 3 = don't care
+  findCtrl.resultsArray = []        //Array that's displayed after the search has been run.
+  findCtrl.resultString = ""        // Displays the number of perople results
+  findCtrl.resultStringShow = true // Decides whether or not when to show the resultString in the DOM. If there are no results or only one result then resultStringShow should be FALSE
 
 //  Person constructor function.
 //  Arguments:
@@ -36,7 +37,39 @@ function FinderController(_){
     this.age = age
     this.smokes = smokes
     this.image = image
-
+  }
+  findCtrl.filterObject = {
+    firstName : "",
+    lastName : "",
+    phone : "",
+    email : "",
+    about : "",
+    priceMin : "",
+    priceMax : "",
+    availability : "",
+  }
+// AGE FILTER
+  findCtrl.ageInRange = function(person){
+    return (person.age >= findCtrl.minAge && person.age <= findCtrl.maxAge)
+  }
+// SMOKES FILTER
+  findCtrl.smokeFilter = function(person){
+    if (findCtrl.smokes == "1" && person.smokes == false) {
+      return true
+    }
+    else if (findCtrl.smokes == "2" && person.smokes == true) {
+      return true
+    }
+    else if (findCtrl.smokes == "3") {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+// PRICE MAX FILTER
+  findCtrl.priceMaxFilter = function(person){
+    return (findCtrl.maxPriceDOM <= person.priceMax)
   }
 //  Creating people to put into findCtrl.personArray
   var zelda = new findCtrl.Person("Zelda", "Feezy", "302-547-8842", "zeldaf@gmail.com", "I'm a princess from out of town and I'm only looking to live somewhere for a few months while I finish a coding bootcamp program here in the area.  I like to fight bad guys, wear dresses and hangout with my boyfriend.", 500, 1500, "July 4", 28, false, "pics/zelda.jpg")
@@ -98,28 +131,37 @@ function FinderController(_){
 //  Placing people into personArray
   findCtrl.personArray.push(zelda, bowser, cFalc, dedede, diddy, dk, falco, fox, gameAndWatch, ganon, ike, jigs, kirby, link, lucario, lucas, luigi, mario, metaknight, mewtwo, peach, pika, rob, samus, sonic, wario, wiiFit, yoshi)
 
-  findCtrl.resultsArray = findCtrl.personArray // so at the start all the people are displayed.
+  // findCtrl.resultsArray = findCtrl.personArray // so at the start all the people are displayed.
 
-  findCtrl.smokesFilter = function(arrayOfPeople){
-    if (findCtrl.smokes == 2) {
-      findCtrl.resultsArray = smokeTrue(arrayOfPeople)
-    }
-    else if (findCtrl.smokes == 1) {
-      findCtrl.resultsArray = smokeFalse(arrayOfPeople)
-    }
-    else {
-      findCtrl.resultsArray = findCtrl.personArray
-      console.log("Filter is don't care")
-    }
-    if (findCtrl.resultsArray.length > 1) {
-      findCtrl.resultString = "Displaying " + String(findCtrl.resultsArray.length) + " results."
-      findCtrl.resultStringShow = true
-    }
-    else {
-      findCtrl.resultStringShow = false
-    }
-    console.log("Is this running?")
+  findCtrl.applyFilter = function(){
+    console.log(findCtrl.smokes)
   }
+
+  // findCtrl.minAge
+  // findCtrl.applyFilter = function(){
+  //
+  // }
+
+  // findCtrl.applyFilter = function(arrayOfPeople){
+  //   if (findCtrl.smokes == 2) {
+  //     findCtrl.resultsArray = smokeTrue(arrayOfPeople)
+  //   }
+  //   else if (findCtrl.smokes == 1) {
+  //     findCtrl.resultsArray = smokeFalse(arrayOfPeople)
+  //   }
+  //   else {
+  //     findCtrl.resultsArray = findCtrl.personArray
+  //     console.log("Filter is don't care")
+  //   }
+  //   if (findCtrl.resultsArray.length > 1) {
+  //     findCtrl.resultString = "Displaying " + String(findCtrl.resultsArray.length) + " results."
+  //     findCtrl.resultStringShow = true
+  //   }
+  //   else {
+  //     findCtrl.resultStringShow = false
+  //   }
+  //   console.log("Is this running?")
+  // }
 
   function smokeTrue(arrayOfPeople){
     var resultArray = _.filter(arrayOfPeople, function(person){

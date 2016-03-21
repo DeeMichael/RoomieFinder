@@ -69,8 +69,9 @@
         <div class="panel-body">
           <h5 class="text-center">Refine Search</h5>
           <div class="row" style="margin-bottom:5px;">
-            <div class="col-sm-6">
-              <input type="checkbox"> Smokes
+            <div class="container">
+              <input type="checkbox">
+              <span>Non-smoker</span>
             </div>
           </div>
           <div class="row">
@@ -103,7 +104,17 @@
             <div class="col-sm-4">
               <img src="{{person.image}}" class="img-thumbnail"/>
             </div>
-            <h5 class="text-center">Refine Search</h5>
+            <div class="col-sm-8">
+              <h5 class="text-center">{{person.firstName}}</h5>
+              <div class="row">
+                <div class="col-sm-3">
+                  <span>age: {{person.age}}</span>
+                </div>
+                <div class="col-sm-9">
+                  <span>email: {{person.email}}</span>
+                </div>
+              </div>
+            </div>
           </div><!-- panel-body -->
         </div><!-- panel panel-default -->
       </div><!-- row -->

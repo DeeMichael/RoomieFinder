@@ -3,7 +3,7 @@ angular.module('Finder', [])
 
 function FinderController(_){
 	var findCtrl = this
-
+  $('[data-toggle="tooltip"]').tooltip()
 // =======INITIALIZING VARIABLES================================================
 //    Initializing variables at the start
 // =============================================================================

@@ -51,12 +51,8 @@
       <div class="col-sm-4 col-sm-offset-4">
         <div class="panel text-center">
           <span>Keyword Search</span>
-          <div class="input-group">
-            <span></span>
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
+          <div class="input">
+            <input type="text" class="form-control text-center" placeholder="Start typing here..">
           </div><!-- input-group -->
         </div><!-- panel -->
       </div><!-- col-sm-4 col-sm-offset-4 -->
@@ -69,7 +65,7 @@
     <div class="col-sm-4">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h5 class="text-center">Refine Search</h5>
+          <h5 class="text-center" style="margin-top:0;">Refine Search</h5>
           <div class="row" style="margin-bottom:5px;">
             <div class="col-sm-4" style="margin-right:0;margin-top:6px;">
               <span>Smokes:</span>
@@ -107,7 +103,7 @@
           </div>
           <div class="input-group">
             <span class="input-group-addon">$</span>
-            <input ng-model="findCtrl.maxPriceDOM" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <input ng-model="findCtrl.maxPriceDOM" type="text" class="form-control text-center" aria-label="Amount (to the nearest dollar)">
             <span class="input-group-addon">.00</span>
           </div>
           <div class="row"> <!-- APPLY FILTERS BUTTON -->

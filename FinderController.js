@@ -111,8 +111,8 @@ function FinderController(_){
       findCtrl.resultsArray = findCtrl.personArray
       console.log("Filter is don't care")
     }
-    if (findCtrl.resultsArray.length() > 1) {
-      findCtrl.resultString = "Displaying " + String(findCtrl.resultsArray.length()) + " results."
+    if (findCtrl.resultsArray.length > 1) {
+      findCtrl.resultString = "Displaying " + String(findCtrl.resultsArray.length) + " results."
       findCtrl.resultStringShow = true
     }
     else {

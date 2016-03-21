@@ -113,7 +113,7 @@
 
 <!-- PEOPLE -->
     <div class="col-sm-8">
-      <div class="panel panel-default">
+      <div ng-show="findCtrl.resultStringShow" class="panel panel-default text-center">
         <h5>{{findCtrl.resultString}}</h5>
       </div>
       <div class="row" ng-repeat="person in findCtrl.resultsArray">

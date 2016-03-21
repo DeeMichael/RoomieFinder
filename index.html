@@ -52,7 +52,7 @@
         <div class="panel text-center">
           <span>Keyword Search</span>
           <div class="input">
-            <input type="text" class="form-control text-center" placeholder="Start typing here..">
+            <input ng-model="findCtrl.keyword" type="text" class="form-control text-center" placeholder="Start typing here..">
           </div><!-- input-group -->
         </div><!-- panel -->
       </div><!-- col-sm-4 col-sm-offset-4 -->
@@ -117,10 +117,10 @@
 
 <!-- PEOPLE -->
     <div class="col-sm-8">
-      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.filterObject | filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter">
-        <!-- <div ng-show="($index==0)" class="panel panel-default text-center">
-          <h5>Displaying {{findCtrl.personArray.length}} results</h5>
-        </div> -->
+      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.filterObject | filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter as results">
+        <div ng-show="($index==0)" class="panel panel-default text-center">
+          <h5>Displaying {{results.length}} of {{findCtrl.personArray.length}} people</h5>
+        </div>
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="col-sm-4">

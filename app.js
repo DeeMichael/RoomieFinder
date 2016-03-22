@@ -1,5 +1,5 @@
 (function(){
 
-	angular.module('RoomieFinder', ['Finder','underscore'])
+	angular.module('RoomieFinder', ['Finder','underscore','firebase'])
 
 })();

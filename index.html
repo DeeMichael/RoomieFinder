@@ -14,7 +14,6 @@
   <!-- bootstrap - Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-
 </head>
 
 <body class="container" ng-controller="FinderController as findCtrl">
@@ -83,7 +82,7 @@
           <div class="row">
             <div class="col-sm-9 text-center">
               Minimum Age
-              <input type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
+              <input  ng-change="findCtrl.minAgeSliderRangeBad()" type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
             </div>
             <div class="col-sm-2 text-center" style="padding-left:0;">
               <span ng-bind="findCtrl.minAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
@@ -92,7 +91,7 @@
           <div class="row">
             <div class="col-sm-9 text-center">
               Maximum Age
-              <input type="range"  min="16" max="120" ng-model="findCtrl.maxAge" value="120"/>
+              <input  ng-change="findCtrl.maxAgeSliderRangeBad()" type="range"  min="16" max="120" ng-model="findCtrl.maxAge" value="120"/>
             </div>
             <div class="col-sm-2 text-center" style="padding-left:0;">
               <span ng-bind="findCtrl.maxAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
@@ -111,7 +110,7 @@
           </div>
           <div class="row"> <!-- APPLY FILTERS BUTTON -->
             <div class="text-center" style="margin-top:5px;">
-              <button ng-click="findCtrl.keywordFilter()" type="button" class="btn btn-default">Apply Filters</button>
+              <button ng-click="findCtrl.test()" type="button" class="btn btn-default">Apply Filters</button>
             </div>
           </div>
         </div><!-- panel-body -->
@@ -196,6 +195,10 @@
 
   <!-- Sourcing Angular 1.5.0 -->
   <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <!-- Source in firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+  <!-- Source in angular fire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>
   <!-- Source in module -->
   <script type="text/javascript" src="app.js"></script>
   <!-- Source in controller -->

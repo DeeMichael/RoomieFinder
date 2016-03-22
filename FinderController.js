@@ -1,13 +1,17 @@
 angular.module('Finder', [])
   .controller('FinderController', FinderController)
 
-function FinderController(_){
+function FinderController(_,$firebaseArray){
 	var findCtrl = this
+  var ref = new Firebase("https://proroomiefinder.firebaseio.com/personArray")
+
   $('[data-toggle="tooltip"]').tooltip()
 // =======INITIALIZING VARIABLES================================================
 //    Initializing variables at the start
 // =============================================================================
-	findCtrl.personArray = []         // This is an array that will hold all the people objects.  I'm initializing the array as an empty array here.
+	findCtrl.personArray = $firebaseArray(ref)
+  //EDIT! // This is an array that will hold all the people objects.  I'm initializing the array as an empty array here.
+
   findCtrl.maxPriceDOM = 100        // This is the Maximum Rent that a user will pay
   findCtrl.minAge = 16              //default place holder for min age on slider
   findCtrl.maxAge = 120             //default place holder for max age on slider
@@ -196,13 +200,39 @@ findCtrl.filterObject = {
 
   var yoshi = new findCtrl.Person("Yoshi", "Green", "120-329-1042", "eggerworks@gmail.com", "I'm Yoshi! I'm basically a dinosaur. I've got a really long toungue. I can move my feet really quickly in the air. I'm really into throughing eggs at things as well as sometimes putting people into giant eggs. If you like eggs then I'm the roommate for you!", 0, 350, "May 25", 38, false, "pics/yoshi.jpg")
 
-//  Placing people into personArray
-  findCtrl.personArray.push(zelda, bowser, cFalc, dedede, diddy, dk, falco, fox, gameAndWatch, ganon, ike, jigs, kirby, link, lucario, lucas, luigi, mario, metaknight, mewtwo, peach, pika, rob, samus, sonic, wario, wiiFit, yoshi)
 
 
+// =======POPULATE FIREBASE=====================================================
+//    OLD CODE USED TO POPULATE FIREBASE
+// =============================================================================
+  //  Placing people into personArray
+  // findCtrl.personArray.push(zelda, bowser, cFalc, dedede, diddy, dk, falco, fox, gameAndWatch, ganon, ike, jigs, kirby, link, lucario, lucas, luigi, mario, metaknight, mewtwo, peach, pika, rob, samus, sonic, wario, wiiFit, yoshi)
+  // for (var i = 0; i < findCtrl.personArray.length; i++) {
+  //   findCtrl.personArray.$add(findCtrl.personArray[i])
+  // }
 
-  findCtrl.applyFilter = function(){
-    console.log(findCtrl.smokes)
+
+  // findCtrl.test = function(){
+  //   findCtrl.minAge = 50
+  // }
+
+  findCtrl.minAgeSliderDisable = false
+  findCtrl.maxAgeSliderDisable = false
+  var minSlide = ''
+  var maxSlide = ''
+  findCtrl.minAgeSliderRangeBad = function(){
+    if (+findCtrl.minAge >= +findCtrl.maxAge) { // + symbol coercices them to numbers. Fixes glitch where 100 < 31
+      minSlide = event.target
+      event.target.disabled = true
+    }
+    maxSlide.disabled = false
+  }
+  findCtrl.maxAgeSliderRangeBad = function(){
+    if (+findCtrl.maxAge <= +findCtrl.minAge) { // + symbol coercices them to numbers. Fixes glitch where 100 < 31
+      maxSlide = event.target
+      event.target.disabled = true
+    }
+      minSlide.disabled = false
   }
 
 

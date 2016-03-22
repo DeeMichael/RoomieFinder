@@ -13,6 +13,10 @@ function FinderController(_){
   findCtrl.maxAge = 120             //default place holder for max age on slider
   findCtrl.smokes = "3"             //1 = Non-smoker, 2 = smoker, 3 = don't care
 
+  findCtrl.modalClick = function(person){
+    console.log(findCtrl.personArray.indexOf(person))
+  }
+
   // findCtrl.keyword
 
 //  Person constructor function.

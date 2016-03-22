@@ -14,7 +14,10 @@ function FinderController(_){
   findCtrl.smokes = "3"             //1 = Non-smoker, 2 = smoker, 3 = don't care
 
   findCtrl.modalClick = function(person){
-    console.log(findCtrl.personArray.indexOf(person))
+    var index = findCtrl.personArray.indexOf(person)
+    var firstName = findCtrl.personArray[index].firstName
+    var lastName = findCtrl.personArray[index].lastName
+    findCtrl.modalName = firstName + " " + lastName
   }
 
   // findCtrl.keyword

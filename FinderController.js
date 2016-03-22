@@ -82,27 +82,32 @@ findCtrl.filterObject = {
 }
 
 // KEYWORD FILTER
-  // findCtrl.keywordFilter = function(person){
-  //   var boolVar = false
-  //   if (findCtrl.keyword == "") {
-  //     return true
-  //   }
-  //   else if (person.lastName.toLowerCase() == findCtrl.keyword.toLowerCase()) {
-  //     return true
-  //   }
-  //   else {
-  //     return false
-  //   }
-  // }
-
-  function stringPartMatch(){
+  findCtrl.keywordFilter = function(person){
+    var boolVar = false
+    if (findCtrl.keyword == "") {
+      return true
+    }
+    else if (stringPartMatch(person)) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  // Function for KEYWORD FILTER that creates one string from lastname, first name, and about and checks to see if the keyword is present in the string.
+  function stringPartMatch(person){
     var lastNameP = person.lastName.toLowerCase()
     var firstNameP = person.firstName.toLowerCase()
     var aboutP = person.about.toLowerCase()
     var keyword = findCtrl.keyword.toLowerCase()
     var firstLastAbout = firstNameP + lastNameP + aboutP
     var matchResults = firstLastAbout.search(keyword)
-    console.log(matchResults)
+    if (matchResults >= 0) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 
 

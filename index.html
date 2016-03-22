@@ -131,7 +131,7 @@
 
               <div class="text-center" style="margin-top:10px">
                 <!-- Trigger the modal with a button -->
-                <button ng-click="findCtrl.modalClick(person)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Info</button>
+                <button ng-click="findCtrl.modalFiller(person)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Info</button>
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -139,18 +139,35 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">{{findCtrl.modalContent.modalName}}</h4>
                       </div>
                       <div class="modal-body">
-                        <!-- <img src="{{person.image}}" class="img-thumbnail"/> -->
-                        <p>{{findCtrl.modalName}} Some text in the modal.</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                              <img src="{{findCtrl.modalContent.image}}" class="img-thumbnail"/>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                              <p>{{findCtrl.modalContent.about}}</p>
+                              <p>Age: {{findCtrl.modalContent.age}}</p>
+                              <p>Maximum Rent: ${{findCtrl.modalContent.priceMax}}</p>
+                              <p>Smokes: {{findCtrl.modalContent.smokes}}</p>
+                            </div>
+                        </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                        <div class="row">
+                          <div class="col-sm-8 text-left">
+                            <span style="display:inline-block;margin-right:7px;">Phone: {{findCtrl.modalContent.phone}}</span>
+                            <span>Email: {{findCtrl.modalContent.email}}</span>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div><!-- MODAL FOOTER ROW -->
+                      </div> <!-- MODAL FOOTER -->
+                    </div> <!-- MODAL CONTENT -->
+                  </div><!-- MODAL DIALOG -->
+                </div><!-- myMODAL MODAL FADE -->
               </div><!-- END OF MODAL -->
 
             </div>

@@ -12,12 +12,31 @@ function FinderController(_){
   findCtrl.minAge = 16              //default place holder for min age on slider
   findCtrl.maxAge = 120             //default place holder for max age on slider
   findCtrl.smokes = "3"             //1 = Non-smoker, 2 = smoker, 3 = don't care
+  findCtrl.modalContent = {}         //  Will contain modal content like name, about, etc. Almost everyhting a person object will contain.
 
-  findCtrl.modalClick = function(person){
+  findCtrl.modalFiller = function(person){
     var index = findCtrl.personArray.indexOf(person)
     var firstName = findCtrl.personArray[index].firstName
     var lastName = findCtrl.personArray[index].lastName
-    findCtrl.modalName = firstName + " " + lastName
+    findCtrl.modalContent.modalName = firstName + " " + lastName
+
+    findCtrl.modalContent.image = findCtrl.personArray[index].image
+    
+    findCtrl.modalContent.phone = findCtrl.personArray[index].phone
+    findCtrl.modalContent.email = findCtrl.personArray[index].email
+    findCtrl.modalContent.about = findCtrl.personArray[index].about
+    findCtrl.modalContent.age = findCtrl.personArray[index].age
+    findCtrl.modalContent.smokes = findCtrl.personArray[index].smokes
+    findCtrl.modalContent.priceMax = findCtrl.personArray[index].priceMax
+
+    if (findCtrl.personArray[index].smokes) {
+      var smokeString = "Yes"
+    }
+    else {
+      var smokeString = "No"
+    }
+    findCtrl.modalContent.smokes = smokeString
+
   }
 
   // findCtrl.keyword

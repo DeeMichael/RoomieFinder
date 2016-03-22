@@ -13,22 +13,23 @@ function FinderController(_){
   findCtrl.maxAge = 120             //default place holder for max age on slider
   findCtrl.smokes = "3"             //1 = Non-smoker, 2 = smoker, 3 = don't care
   findCtrl.modalContent = {}         //  Will contain modal content like name, about, etc. Almost everyhting a person object will contain.
+  findCtrl.keyword = ""
 
+// =======MODAL FILLER==========================================================
+//    Function for filling the popup modal once you hit the More Info button
+// =============================================================================
   findCtrl.modalFiller = function(person){
     var index = findCtrl.personArray.indexOf(person)
     var firstName = findCtrl.personArray[index].firstName
     var lastName = findCtrl.personArray[index].lastName
     findCtrl.modalContent.modalName = firstName + " " + lastName
-
     findCtrl.modalContent.image = findCtrl.personArray[index].image
-    
     findCtrl.modalContent.phone = findCtrl.personArray[index].phone
     findCtrl.modalContent.email = findCtrl.personArray[index].email
     findCtrl.modalContent.about = findCtrl.personArray[index].about
     findCtrl.modalContent.age = findCtrl.personArray[index].age
     findCtrl.modalContent.smokes = findCtrl.personArray[index].smokes
     findCtrl.modalContent.priceMax = findCtrl.personArray[index].priceMax
-
     if (findCtrl.personArray[index].smokes) {
       var smokeString = "Yes"
     }
@@ -36,12 +37,9 @@ function FinderController(_){
       var smokeString = "No"
     }
     findCtrl.modalContent.smokes = smokeString
-
   }
 
-  // findCtrl.keyword
-
-//  Person constructor function.
+// =======PERSON OBJECT CONTRUCTOR FUNCTION=====================================
 //  Arguments:
 // first and last name - string,
 // phone - string in format 888-888-8888,
@@ -52,6 +50,7 @@ function FinderController(_){
 // age - integer,
 // image - file path to jpeg,
 // smokes - boolean,
+// =============================================================================
   findCtrl.Person = function(firstName,lastName,phone,email,about,priceMin,priceMax,availability,age,smokes,image){
     this.firstName = firstName
     this.lastName = lastName
@@ -65,20 +64,47 @@ function FinderController(_){
     this.smokes = smokes
     this.image = image
   }
-  findCtrl.filterObject = {
-    firstName : "",
-    lastName : "",
-    phone : "",
-    email : "",
-    about : "",
-    priceMin : "",
-    priceMax : "",
-    availability : "",
-  }
 
 // =======FILTERS===============================================================
 //    Filters used with ng-repeat.
 // =============================================================================
+
+//Filter Object. ------NOT SURE IF THIS IS USED. CHECK AND DELETE IF NECESARY
+findCtrl.filterObject = {
+  firstName : "",
+  lastName : "",
+  phone : "",
+  email : "",
+  about : "",
+  priceMin : "",
+  priceMax : "",
+  availability : "",
+}
+
+// KEYWORD FILTER
+  // findCtrl.keywordFilter = function(person){
+  //   var boolVar = false
+  //   if (findCtrl.keyword == "") {
+  //     return true
+  //   }
+  //   else if (person.lastName.toLowerCase() == findCtrl.keyword.toLowerCase()) {
+  //     return true
+  //   }
+  //   else {
+  //     return false
+  //   }
+  // }
+
+  function stringPartMatch(){
+    var lastNameP = person.lastName.toLowerCase()
+    var firstNameP = person.firstName.toLowerCase()
+    var aboutP = person.about.toLowerCase()
+    var keyword = findCtrl.keyword.toLowerCase()
+    var firstLastAbout = firstNameP + lastNameP + aboutP
+    var matchResults = firstLastAbout.search(keyword)
+    console.log(matchResults)
+  }
+
 
 // AGE FILTER
   findCtrl.ageInRange = function(person){
@@ -106,7 +132,9 @@ function FinderController(_){
     return (findCtrl.maxPriceDOM <= person.priceMax)
   }
 
-//  Creating people to put into findCtrl.personArray
+// =======PEOPLE GOING INTO PERSON ARRAY========================================
+//    Creating people to put into findCtrl.personArray
+// =============================================================================
   var zelda = new findCtrl.Person("Zelda", "Feezy", "302-547-8842", "zeldaf@gmail.com", "I'm a princess from out of town and I'm only looking to live somewhere for a few months while I finish a coding bootcamp program here in the area.  I like to fight bad guys, wear dresses and hangout with my boyfriend.", 500, 1500, "July 4", 28, false, "pics/zelda.jpg")
 
   var bowser = new findCtrl.Person("Bowser", "Koopa", "302-824-6661", "kingbowser@gmail.com", "I'm a pretty big dude who likes to mess things up. I'm used to always getting my way.  I really like metal, kidnapping, and raging hard. I'm big into bbqing and can make a mean burger.", 0, 1000, "August 18", 45, true, "pics/bowser.jpg")

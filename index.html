@@ -111,7 +111,7 @@
           </div>
           <div class="row"> <!-- APPLY FILTERS BUTTON -->
             <div class="text-center" style="margin-top:5px;">
-              <button ng-click="findCtrl.applyFilter()" type="button" class="btn btn-default">Apply Filters</button>
+              <button ng-click="findCtrl.keywordFilter()" type="button" class="btn btn-default">Apply Filters</button>
             </div>
           </div>
         </div><!-- panel-body -->
@@ -120,7 +120,7 @@
 
 <!-- PEOPLE -->
     <div class="col-sm-8">
-      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.filterObject | filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter as results">
+      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.filterObject | filter: findCtrl.keywordFilter | filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter as results">
         <div ng-show="($index==0)" class="panel panel-default text-center">
           <h5>Displaying {{results.length}} of {{findCtrl.personArray.length}} people</h5>
         </div>
@@ -193,9 +193,6 @@
     </div><!-- col-sm-8 -->
 
   </div><!-- row --><!-- End of REFINE SEARCH AND PEOPLE SECTION-->
-
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
   <!-- Sourcing Angular 1.5.0 -->
   <script type="text/javascript" src="bower_components/angular/angular.js"></script>

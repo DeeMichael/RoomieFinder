@@ -1,0 +1,148 @@
+
+<!-- SEARCH BAR -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <div class="panel text-center">
+          <span>Keyword Search</span>
+          <div class="input">
+            <input ng-model="findCtrl.keyword" type="text" class="form-control text-center" placeholder="Start typing here..">
+          </div><!-- input-group -->
+        </div><!-- panel -->
+      </div><!-- col-sm-4 col-sm-offset-4 -->
+    </div><!--row -->
+  </div><!-- container -->
+
+<!-- REFINE SEARCH AND PEOPLE SECTION-->
+  <div class="row">
+<!-- REFINE SEARCH -->
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h5 class="text-center" style="margin-top:0;">Refine Search</h5>
+          <div class="row" style="margin-bottom:5px;">
+            <div class="col-sm-4" style="margin-right:0;margin-top:6px;">
+              <span>Smokes:</span>
+            </div>
+            <div class="col-sm-8">
+              <div class="form-group">
+                <select ng-model="findCtrl.smokes" class="form-control col-sm-4" >
+                  <option value="1">Non-Smoker</option>
+                  <option value="2">Smoker</option>
+                  <option value="3">Don't Care</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9 text-center">
+              Minimum Age
+              <input  ng-change="findCtrl.minAgeSliderRangeBad()" type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
+            </div>
+            <div class="col-sm-2 text-center" style="padding-left:0;">
+              <span ng-bind="findCtrl.minAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9 text-center">
+              Maximum Age
+              <input  ng-change="findCtrl.maxAgeSliderRangeBad()" type="range"  min="16" max="120" ng-model="findCtrl.maxAge" value="120"/>
+            </div>
+            <div class="col-sm-2 text-center" style="padding-left:0;">
+              <span ng-bind="findCtrl.maxAge" style="font-size:16px;display:inline-block;margin-top:13px;margin-bottom:5px;"></span>
+            </div>
+          </div>
+          <div class="text-center">
+            <button style="position: absolute;left: 37px;" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Maximum rent person is willing to pay.">
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            </button>
+            <span>Maximum Rent</span>
+          </div>
+          <div class="input-group" style="margin-top: 5px;">
+            <span class="input-group-addon">$</span>
+            <input ng-model="findCtrl.maxPriceDOM" type="text" class="form-control text-center" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-addon">.00</span>
+          </div>
+          <div class="row"> <!-- APPLY FILTERS BUTTON -->
+            <div class="text-center" style="margin-top:5px;">
+              <button ng-click="findCtrl.test()" type="button" class="btn btn-default">Apply Filters</button>
+            </div>
+          </div>
+        </div><!-- panel-body -->
+      </div><!-- panel panel-default -->
+    </div><!-- col-sm-4 -->
+
+<!-- PEOPLE -->
+    <div class="col-sm-8">
+      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.filterObject | filter: findCtrl.keywordFilter | filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter as results">
+        <div ng-show="($index==0)" class="panel panel-default text-center">
+          <h5>Displaying {{results.length}} of {{findCtrl.personArray.length}} people</h5>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-sm-4">
+              <img src="{{person.image}}" class="img-thumbnail"/>
+
+              <div class="text-center" style="margin-top:10px">
+                <!-- Trigger the modal with a button -->
+                <button ng-click="findCtrl.modalFiller(person)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Info</button>
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{findCtrl.modalContent.modalName}}</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                              <img src="{{findCtrl.modalContent.image}}" class="img-thumbnail"/>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                              <p>{{findCtrl.modalContent.about}}</p>
+                              <p>Age: {{findCtrl.modalContent.age}}</p>
+                              <p>Maximum Rent: ${{findCtrl.modalContent.priceMax}}</p>
+                              <p>Smokes: {{findCtrl.modalContent.smokes}}</p>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="row">
+                          <div class="col-sm-8 text-left">
+                            <span style="display:inline-block;margin-right:7px;">Phone: {{findCtrl.modalContent.phone}}</span>
+                            <span>Email: {{findCtrl.modalContent.email}}</span>
+                          </div>
+                          <div class="col-sm-4">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div><!-- MODAL FOOTER ROW -->
+                      </div> <!-- MODAL FOOTER -->
+                    </div> <!-- MODAL CONTENT -->
+                  </div><!-- MODAL DIALOG -->
+                </div><!-- myMODAL MODAL FADE -->
+              </div><!-- END OF MODAL -->
+
+            </div>
+            <div class="col-sm-8">
+              <h5 class="text-center">{{person.firstName}}</h5>
+              <div class="row">
+                <div class="col-sm-3">
+                  <span>age: {{person.age}}</span>
+                </div>
+                <div class="col-sm-9">
+                  <span>email: {{person.email}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12" style="margin-top:5px;">
+                  <span>About: {{person.about}}</span>
+                </div>
+              </div>
+            </div><!-- col-sm-8 -->
+          </div><!-- panel-body -->
+        </div><!-- panel panel-default -->
+      </div><!-- row -->
+    </div><!-- col-sm-8 -->
+  </div><!-- row --><!-- End of REFINE SEARCH AND PEOPLE SECTION-->

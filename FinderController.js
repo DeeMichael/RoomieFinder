@@ -1,11 +1,20 @@
-angular.module('Finder', [])
+angular.module('Finder', ['ui.router'])
   .controller('FinderController', FinderController)
+  .config(MainRouter)
+
+function MainRouter($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('home', {url: "/", templateUrl: "home.html",})
+    .state('about', {url: "/", templateUrl: "about.html",})
+    .state('contact', {url: "/", templateUrl: "contact.html",})
+    .state('logIn', {url: "/", templateUrl: "logIn.html",})
+  $urlRouterProvider.otherwise('/')
+}
 
 function FinderController(_,$firebaseArray){
 	var findCtrl = this
   var ref = new Firebase("https://proroomiefinder.firebaseio.com/personArray")
-
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip() // jquery script to get tooltip to work
 // =======INITIALIZING VARIABLES================================================
 //    Initializing variables at the start
 // =============================================================================
@@ -141,6 +150,26 @@ findCtrl.filterObject = {
     return (findCtrl.maxPriceDOM <= person.priceMax)
   }
 
+// =======AGE SLIDER FUNCTIONALITY==============================================
+//    Disables sliders when they're ranges pass.
+// =============================================================================
+  var minSlide = ''
+  var maxSlide = ''
+  findCtrl.minAgeSliderRangeBad = function(){
+    if (+findCtrl.minAge >= +findCtrl.maxAge) { // + symbol coercices them to numbers. Fixes glitch where 100 < 31
+      minSlide = event.target
+      event.target.disabled = true
+    }
+    maxSlide.disabled = false
+  }
+  findCtrl.maxAgeSliderRangeBad = function(){
+    if (+findCtrl.maxAge <= +findCtrl.minAge) { // + symbol coercices them to numbers. Fixes glitch where 100 < 31
+      maxSlide = event.target
+      event.target.disabled = true
+    }
+      minSlide.disabled = false
+  }
+
 // =======PEOPLE GOING INTO PERSON ARRAY========================================
 //    Creating people to put into findCtrl.personArray
 // =============================================================================
@@ -216,8 +245,6 @@ findCtrl.filterObject = {
   //   findCtrl.minAge = 50
   // }
 
-  findCtrl.minAgeSliderDisable = false
-  findCtrl.maxAgeSliderDisable = false
   var minSlide = ''
   var maxSlide = ''
   findCtrl.minAgeSliderRangeBad = function(){

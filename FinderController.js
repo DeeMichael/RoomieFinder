@@ -173,7 +173,7 @@ findCtrl.filterObject = {
 
 
 // =======NEW USER VALIDATION===================================================
-//    Validating new user inputs
+//    Validating new user inputs in new user modal form
 // =============================================================================
   findCtrl.newUser = {}
   findCtrl.newUserFormValid = function(){
@@ -187,6 +187,8 @@ findCtrl.filterObject = {
     findCtrl.newUser.firstNameClass = ""
     findCtrl.newUser.lastNameClass = ""
     findCtrl.newUser.smokesClass = ""
+
+    findCtrl.newUser.closeModal = ""
 
     findCtrl.newUser.showError = false
     findCtrl.newUser.errorArray = []
@@ -257,6 +259,13 @@ findCtrl.filterObject = {
     }
     else {
       findCtrl.newUser.smokesClass = "has-success"
+    }
+    //If there are no errors than close the modal
+    if (findCtrl.newUser.errorArray.length == 0) {
+      findCtrl.newUser.closeModal = "modal"
+    }
+    else {
+      findCtrl.newUser.closeModal = ""
     }
   }
 

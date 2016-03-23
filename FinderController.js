@@ -171,6 +171,85 @@ findCtrl.filterObject = {
       minSlide.disabled = false
   }
 
+
+// =======NEW USER VALIDATION===================================================
+//    Validating new user inputs
+// =============================================================================
+  findCtrl.newUser = {}
+  findCtrl.newUserFormValid = function(){
+
+    findCtrl.newUser.firstNameClass = ""
+    findCtrl.newUser.lastNameClass = ""
+    findCtrl.newUser.emailClass = ""
+    findCtrl.newUser.telephoneClass = ""
+    findCtrl.newUser.ageClass = ""
+    findCtrl.newUser.aboutClass = ""
+    findCtrl.newUser.firstNameClass = ""
+    findCtrl.newUser.lastNameClass = ""
+
+    findCtrl.newUser.showError = false
+    findCtrl.newUser.errorArray = []
+
+    //FIRST NAME
+    if (findCtrl.newUser.firstName == undefined || findCtrl.newUser.firstName.length <= 0) {
+      findCtrl.newUser.firstNameClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid First Name")
+      findCtrl.newUser.showError = true
+    }
+    else {
+      findCtrl.newUser.firstNameClass = "has-success"
+    }
+    //LAST NAME
+    if (findCtrl.newUser.lastName == undefined || findCtrl.newUser.lastName.length <= 0) {
+      findCtrl.newUser.lastNameClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid Last Name")
+      findCtrl.newUser.showError = true
+    }
+    else {
+      findCtrl.newUser.lastNameClass = "has-success"
+    }
+    //EMAIL
+    var regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/ //Simple email expression. Doesn't allow numbers in the domain name and doesn't allow for top level domains that are less than 2 or more than 3 letters.
+    var stringEmail = findCtrl.newUser.email
+    if (regexEmail.test(stringEmail)) {
+      findCtrl.newUser.emailClass = "has-success"
+    }
+    else {
+      findCtrl.newUser.emailClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid Email Address")
+      findCtrl.newUser.showError = true
+    }
+    //PHONE
+    var regexPhone = /^[2-9]\d{2}-\d{3}-\d{4}$/ //This expression matches a hyphen separated US phone number, of the form ANN-NNN-NNNN, where A is between 2 and 9 and N is between 0 and 9.
+    var stringPhone = findCtrl.newUser.telephone
+    if (regexPhone.test(stringPhone)) {
+      findCtrl.newUser.telephoneClass = "has-success"
+    }
+    else {
+      findCtrl.newUser.telephoneClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid Phone Number")
+      findCtrl.newUser.showError = true
+    }
+    //AGE
+    if (findCtrl.newUser.age>=16 && findCtrl.newUser.age<=120) {
+      findCtrl.newUser.ageClass = "has-success"
+    }
+    else {
+      findCtrl.newUser.ageClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid Age Input")
+      findCtrl.newUser.showError = true
+    }
+    //ABOUT
+    if (findCtrl.newUser.about!=undefined && findCtrl.newUser.about.length>0) {
+      findCtrl.newUser.aboutClass = "has-success"
+    }
+    else {
+      findCtrl.newUser.aboutClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid About Input")
+      findCtrl.newUser.showError = true
+    }
+  }
+
 // =======PEOPLE GOING INTO PERSON ARRAY========================================
 //    Creating people to put into findCtrl.personArray
 // =============================================================================

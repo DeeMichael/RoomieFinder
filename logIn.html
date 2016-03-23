@@ -27,49 +27,58 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">New User Entry Form</h4>
       </div>
       <div class="modal-body">
-
-          <div class="row" style="margin-bottom:10px">
-            <div class="form-group col-sm-6">
-              <span>First Name: </span>
-              <input type="email" class="form-control">
-            </div>
-            <div class="form-group col-sm-6">
-              <span>Last Name: </span>
-              <input type="email" class="form-control">
-            </div>
+        <div class="row" style="margin-bottom:10px" ng-class="findCtrl.newUser.firstNameClass">
+          <div class="form-group col-sm-6">
+            <span class="control-label">First Name: </span>
+            <input ng-model="findCtrl.newUser.firstName" type="text" class="form-control">
           </div>
-          <div class="row">
-            <div class="form-group col-sm-6">
-              <span>Email: </span>
-              <input type="email" class="form-control">
-            </div>
-            <div class="form-group col-sm-6">
-              <span>Telephone: </span>
-              <input type="tel" class="form-control">
-            </div>
+          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.lastNameClass">
+            <span class="control-label">Last Name: </span>
+            <input ng-model="findCtrl.newUser.lastName" type="text" class="form-control">
           </div>
-          <div class="row">
-            <div class="form-group col-sm-2">
-              <span>Age: </span>
-              <input type="number" class="form-control">
-            </div>
-            <div class="checkboxcol-sm-10">
-              <span>
-                <input type="checkbox"> Do you Smoke?
-              </span>
-            </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.emailClass">
+            <span class="control-label">Email: </span>
+            <input ng-model="findCtrl.newUser.email" type="email" class="form-control">
           </div>
-        <span>Write a bit about yourself here - </span>
-        <textarea class="form-control" rows="3"></textarea>
-
-
+          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.telephoneClass">
+            <span class="control-label">Telephone: XXX-XXX-XXXX</span>
+            <input ng-model="findCtrl.newUser.telephone" type="tel" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-3" ng-class="findCtrl.newUser.ageClass">
+            <span class="control-label">Age: 16-120</span>
+            <input ng-model="findCtrl.newUser.age" type="number" class="form-control">
+          </div>
+          <div class="form-group col-sm-5">
+            <span class="control-label">Maximum Rent: </span>
+            <input type="number" class="form-control">
+          </div>
+          <div class="checkbox col-sm-2">
+            <span class="control-label">
+              <input type="checkbox"> Do you Smoke?
+            </span>
+          </div>
+        </div>
+        <div class="" ng-class="findCtrl.newUser.aboutClass">
+          <span class="control-label" >Write a bit about yourself here - </span>
+          <textarea ng-model="findCtrl.newUser.about" class="form-control" rows="3"></textarea>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+          <div class="has-error pull-left" ng-show="findCtrl.newUser.showError">
+            <ul>
+              <li class="control-label" ng-repeat="error in findCtrl.newUser.errorArray">{{error}}</li>
+            </ul>
+          </div>
+          <h4 ng-show="findCtrl.newUser.showError" ng-bind="findCtrl.newUser.error" class="has-error"></h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button ng-click="findCtrl.newUserFormValid()" type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>

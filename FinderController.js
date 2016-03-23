@@ -186,6 +186,7 @@ findCtrl.filterObject = {
     findCtrl.newUser.aboutClass = ""
     findCtrl.newUser.firstNameClass = ""
     findCtrl.newUser.lastNameClass = ""
+    findCtrl.newUser.smokesClass = ""
 
     findCtrl.newUser.showError = false
     findCtrl.newUser.errorArray = []
@@ -240,13 +241,22 @@ findCtrl.filterObject = {
       findCtrl.newUser.showError = true
     }
     //ABOUT
-    if (findCtrl.newUser.about!=undefined && findCtrl.newUser.about.length>0) {
-      findCtrl.newUser.aboutClass = "has-success"
-    }
-    else {
+    if (findCtrl.newUser.about==undefined || findCtrl.newUser.about.length <= 0) {
       findCtrl.newUser.aboutClass = "has-error"
       findCtrl.newUser.errorArray.push("Invalid About Input")
       findCtrl.newUser.showError = true
+    }
+    else {
+      findCtrl.newUser.aboutClass = "has-success"
+    }
+    //SMOKES
+    if (findCtrl.newUser.smokes==undefined) {
+      findCtrl.newUser.smokesClass = "has-error"
+      findCtrl.newUser.errorArray.push("Invalid Answer For Do You Smoke")
+      findCtrl.newUser.showError = true
+    }
+    else {
+      findCtrl.newUser.smokesClass = "has-success"
     }
   }
 

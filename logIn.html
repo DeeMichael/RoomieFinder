@@ -59,10 +59,12 @@
             <span class="control-label">Maximum Rent: </span>
             <input type="number" class="form-control">
           </div>
-          <div class="checkbox col-sm-2">
-            <span class="control-label">
-              <input type="checkbox"> Do you Smoke?
-            </span>
+          <div class="col-sm-3" ng-class="findCtrl.newUser.smokesClass">
+            <span class="control-label"> Do you Smoke:</span>
+            <select ng-model="findCtrl.newUser.smokes" class="form-control col-sm-4" >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
           </div>
         </div>
         <div class="" ng-class="findCtrl.newUser.aboutClass">
@@ -71,7 +73,7 @@
         </div>
       </div>
       <div class="modal-footer">
-          <div class="has-error pull-left" ng-show="findCtrl.newUser.showError">
+          <div class="has-error pull-left text-left" ng-show="findCtrl.newUser.showError">
             <ul>
               <li class="control-label" ng-repeat="error in findCtrl.newUser.errorArray">{{error}}</li>
             </ul>

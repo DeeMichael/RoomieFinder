@@ -14,12 +14,13 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 function FinderController(_,$firebaseArray){
 	var findCtrl = this
   var ref = new Firebase("https://proroomiefinder.firebaseio.com/personArray")
-  $('[data-toggle="tooltip"]').tooltip() // jquery script to get tooltip to work
+// $('[data-toggle="tooltip"]').tooltip() // jquery script to get tooltip to work. Stopped working for some reason. Noticed after implementation of ui-router.
+
 // =======INITIALIZING VARIABLES================================================
 //    Initializing variables at the start
 // =============================================================================
 	findCtrl.personArray = $firebaseArray(ref)
-  //EDIT! // This is an array that will hold all the people objects.  I'm initializing the array as an empty array here.
+  // This is the array that holds all the people. It is in firebase.
 
   findCtrl.maxPriceDOM = 100        // This is the Maximum Rent that a user will pay
   findCtrl.minAge = 16              //default place holder for min age on slider

@@ -16,4 +16,61 @@
     </label>
   </div>
   <button type="submit" class="btn btn-default">Sign in</button>
+  <h5>Don't have an account?</h5>
+  <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+    Create New Account
+  </button>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+          <div class="row" style="margin-bottom:10px">
+            <div class="form-group col-sm-6">
+              <span>First Name: </span>
+              <input type="email" class="form-control">
+            </div>
+            <div class="form-group col-sm-6">
+              <span>Last Name: </span>
+              <input type="email" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <span>Email: </span>
+              <input type="email" class="form-control">
+            </div>
+            <div class="form-group col-sm-6">
+              <span>Telephone: </span>
+              <input type="tel" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-2">
+              <span>Age: </span>
+              <input type="number" class="form-control">
+            </div>
+            <div class="checkboxcol-sm-10">
+              <span>
+                <input type="checkbox"> Do you Smoke?
+              </span>
+            </div>
+          </div>
+        <span>Write a bit about yourself here - </span>
+        <textarea class="form-control" rows="3"></textarea>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>

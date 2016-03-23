@@ -52,6 +52,10 @@
               <span ng-bind="findCtrl.maxAge" style="font-size:16px;display:inline-block;margin-top:13px;margin-bottom:5px;"></span>
             </div>
           </div>
+          <!-- TOOL TIP ON MAXIMUM RENT GLYPHICON -->
+          <script type="text/javascript">
+            $('[data-toggle="tooltip"]').tooltip()
+          </script>
           <div class="text-center">
             <button style="position: absolute;left: 37px;" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Maximum rent person is willing to pay.">
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
@@ -137,7 +141,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-12" style="margin-top:5px;">
-                  <span>About: {{person.about}}</span>
+                  <span>{{person.about}}</span>
                 </div>
               </div>
             </div><!-- col-sm-8 -->

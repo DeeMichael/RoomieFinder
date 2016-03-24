@@ -19,7 +19,6 @@ function FinderController(_,$firebaseArray){
 //    Initializing variables at the start
 // =============================================================================
 	findCtrl.personArray = $firebaseArray(ref)
-  console.log(findCtrl.personArray)
   // This is the array that holds all the people. It is in firebase.
 
   findCtrl.maxPriceDOM = 100        // This is the Maximum Rent that a user will pay

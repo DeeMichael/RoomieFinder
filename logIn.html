@@ -45,9 +45,9 @@
             <span class="control-label">Email: </span>
             <input ng-model="findCtrl.newUser.email" type="email" class="form-control">
           </div>
-          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.telephoneClass">
+          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.phoneClass">
             <span class="control-label">Telephone: XXX-XXX-XXXX</span>
-            <input ng-model="findCtrl.newUser.telephone" type="tel" class="form-control">
+            <input ng-model="findCtrl.newUser.phone" type="text" class="form-control">
           </div>
         </div>
         <div class="row">
@@ -57,7 +57,7 @@
           </div>
           <div class="form-group col-sm-5">
             <span class="control-label">Maximum Rent: </span>
-            <input type="number" class="form-control">
+            <input ng-model="findCtrl.newUser.priceMax" type="number" class="form-control">
           </div>
           <div class="col-sm-3" ng-class="findCtrl.newUser.smokesClass">
             <span class="control-label"> Do you Smoke:</span>

@@ -15,11 +15,11 @@ function FinderController(_,$firebaseArray){
 	var findCtrl = this
   var ref = new Firebase("https://proroomiefinder.firebaseio.com/personArray")
 // $('[data-toggle="tooltip"]').tooltip() // jquery script to get tooltip to work. Stopped working for some reason. Noticed after implementation of ui-router.
-
 // =======INITIALIZING VARIABLES================================================
 //    Initializing variables at the start
 // =============================================================================
 	findCtrl.personArray = $firebaseArray(ref)
+  console.log(findCtrl.personArray)
   // This is the array that holds all the people. It is in firebase.
 
   findCtrl.maxPriceDOM = 100        // This is the Maximum Rent that a user will pay
@@ -177,19 +177,22 @@ findCtrl.filterObject = {
 // =============================================================================
   findCtrl.newUser = {}
   findCtrl.newUserFormValid = function(){
-
+    //All the new user's inputs classes initialized to empty to start.
     findCtrl.newUser.firstNameClass = ""
     findCtrl.newUser.lastNameClass = ""
     findCtrl.newUser.emailClass = ""
-    findCtrl.newUser.telephoneClass = ""
+    findCtrl.newUser.phoneClass = ""
     findCtrl.newUser.ageClass = ""
     findCtrl.newUser.aboutClass = ""
     findCtrl.newUser.firstNameClass = ""
     findCtrl.newUser.lastNameClass = ""
     findCtrl.newUser.smokesClass = ""
 
-    findCtrl.newUser.closeModal = ""
 
+    findCtrl.newUser.image = "http://images.clipartpanda.com/penguin-clip-art-aiq5zAqiM.png"
+
+    findCtrl.newUser.closeModal = "" //value of data-dismiss attribute on submit button of new user modal.
+    //Error information. If there's an error in the error array showError will show an error message in the new user modal.
     findCtrl.newUser.showError = false
     findCtrl.newUser.errorArray = []
 
@@ -224,12 +227,12 @@ findCtrl.filterObject = {
     }
     //PHONE
     var regexPhone = /^[2-9]\d{2}-\d{3}-\d{4}$/ //This expression matches a hyphen separated US phone number, of the form ANN-NNN-NNNN, where A is between 2 and 9 and N is between 0 and 9.
-    var stringPhone = findCtrl.newUser.telephone
+    var stringPhone = findCtrl.newUser.phone
     if (regexPhone.test(stringPhone)) {
-      findCtrl.newUser.telephoneClass = "has-success"
+      findCtrl.newUser.phoneClass = "has-success"
     }
     else {
-      findCtrl.newUser.telephoneClass = "has-error"
+      findCtrl.newUser.phoneClass = "has-error"
       findCtrl.newUser.errorArray.push("Invalid Phone Number")
       findCtrl.newUser.showError = true
     }
@@ -259,10 +262,18 @@ findCtrl.filterObject = {
     }
     else {
       findCtrl.newUser.smokesClass = "has-success"
+      if (findCtrl.newUser.smokes == "yes") {
+        findCtrl.newUser.smokes = true
+      }
+      else {
+        findCtrl.newUser.smokes = false
+      }
     }
     //If there are no errors than close the modal
     if (findCtrl.newUser.errorArray.length == 0) {
       findCtrl.newUser.closeModal = "modal"
+      var newPerson = new findCtrl.Person(findCtrl.newUser.firstName, findCtrl.newUser.lastName, findCtrl.newUser.phone, findCtrl.newUser.email, findCtrl.newUser.about, 0, findCtrl.newUser.priceMax, "Default:Unknown", findCtrl.newUser.age, findCtrl.newUser.smokes, "http://images.clipartpanda.com/penguin-clip-art-aiq5zAqiM.png")
+      findCtrl.personArray.$add(findCtrl.newUser)
     }
     else {
       findCtrl.newUser.closeModal = ""

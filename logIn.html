@@ -33,28 +33,39 @@
 
         <form name="userForm">
           <div class="row" style="margin-bottom:10px">
-            <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.firstName.$touched && userForm.firstName.$invalid }">
+            <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.firstName.$touched && userForm.firstName.$invalid, 'has-success': userForm.firstName.$touched && userForm.firstName.$valid }">
               <span class="control-label">First Name: </span>
               <input name="firstName" ng-model="findCtrl.newUser.firstName" type="text" class="form-control" required>
-
-              <div ng-messages="userForm.firstName.$error">
-                <p ng-message="required">Your name is required.</p>
+              <div ng-messages="userForm.firstName.$error" ng-show="userForm.firstName.$touched">
+                <p ng-message="required">Your first name is required.</p>
               </div>
             </div>
 
-            <div class="form-group col-sm-6" ng-class="findCtrl.newUser.lastNameClass">
+            <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.lastName.$touched && userForm.lastName.$invalid, 'has-success': userForm.lastName.$touched && userForm.lastName.$valid }">
               <span class="control-label">Last Name: </span>
-              <input ng-model="findCtrl.newUser.lastName" type="text" class="form-control">
+              <input name="lastName" ng-model="findCtrl.newUser.lastName" type="text" class="form-control" required>
+              <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$touched">
+                <p ng-message="required">Your last name is required.</p>
+              </div>
             </div>
           </div>
+
           <div class="row">
-            <div class="form-group col-sm-6" ng-class="findCtrl.newUser.emailClass">
+            <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.email.$touched && userForm.email.$invalid, 'has-success': userForm.email.$touched && userForm.email.$valid }">
               <span class="control-label">Email: </span>
-              <input ng-model="findCtrl.newUser.email" type="email" class="form-control">
+              <input name="email" ng-model="findCtrl.newUser.email" type="email" class="form-control" required>
+              <div ng-messages="userForm.email.$error" ng-show="userForm.email.$touched || (userForm.email.$touched && userForm.email.$invalid)">
+                <p ng-message="required">Your email is required.</p>
+                <p ng-message="email">Your email is invalid.</p>
+              </div>
             </div>
-            <div class="form-group col-sm-6" ng-class="findCtrl.newUser.phoneClass">
+            <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.phone.$touched && userForm.phone.$invalid, 'has-success': userForm.phone.$touched && userForm.phone.$valid }">
               <span class="control-label">Telephone: XXX-XXX-XXXX</span>
-              <input ng-model="findCtrl.newUser.phone" type="text" class="form-control">
+              <input ng-pattern="/^[2-9]\d{2}-\d{3}-\d{4}$/" name="phone" ng-model="findCtrl.newUser.phone" type="tel" class="form-control" required>
+              <div ng-messages="userForm.phone.$error" ng-show="userForm.phone.$touched || (userForm.phone.$touched && userForm.phone.$invalid)">
+                <p ng-message="required">Your phone number is required.</p>
+                <p ng-message="pattern">Invalid phone number format.</p>
+              </div>
             </div>
           </div>
           <div class="row">

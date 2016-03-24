@@ -302,9 +302,7 @@ findCtrl.filterObject = {
     //If there are no errors than close the modal
     if (findCtrl.newUser.errorArray.length == 0) {
       findCtrl.newUser.closeModal = "modal"
-
       var newPerson = new findCtrl.Person(findCtrl.newUser.firstName, findCtrl.newUser.lastName, findCtrl.newUser.phone, findCtrl.newUser.email, findCtrl.newUser.about, 0, findCtrl.newUser.priceMax, "Default:Unknown", findCtrl.newUser.age, findCtrl.newUser.smokes, "http://images.clipartpanda.com/penguin-clip-art-aiq5zAqiM.png",findCtrl.newUser.gender)
-
       findCtrl.personArray.$add(findCtrl.newUser)
     }
     else {

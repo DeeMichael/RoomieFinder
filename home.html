@@ -78,8 +78,7 @@
 
 <!-- PEOPLE -->
     <div class="col-sm-8">
-      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.keywordFilter as results">
-        <!-- filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter -->
+      <div class="row" ng-repeat="person in findCtrl.personArray | filter: findCtrl.keywordFilter | filter: findCtrl.ageInRange | filter: findCtrl.smokeFilter | filter: findCtrl.priceMaxFilter as results">
         <div ng-show="($index==0)" class="panel panel-default text-center">
           <h5>Displaying {{results.length}} of {{findCtrl.personArray.length}} people</h5>
         </div>

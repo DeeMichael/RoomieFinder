@@ -30,65 +30,74 @@
         <h4 class="modal-title" id="myModalLabel">New User Entry Form</h4>
       </div>
       <div class="modal-body">
-        <div class="row" style="margin-bottom:10px">
-          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.firstNameClass">
-            <span class="control-label">First Name: </span>
-            <input ng-model="findCtrl.newUser.firstName" type="text" class="form-control">
+
+        <form name="userForm">
+          <div class="row" style="margin-bottom:10px">
+            <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.firstName.$touched && userForm.firstName.$invalid }">
+              <span class="control-label">First Name: </span>
+              <input name="firstName" ng-model="findCtrl.newUser.firstName" type="text" class="form-control" required>
+
+              <div ng-messages="userForm.firstName.$error">
+                <p ng-message="required">Your name is required.</p>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6" ng-class="findCtrl.newUser.lastNameClass">
+              <span class="control-label">Last Name: </span>
+              <input ng-model="findCtrl.newUser.lastName" type="text" class="form-control">
+            </div>
           </div>
-          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.lastNameClass">
-            <span class="control-label">Last Name: </span>
-            <input ng-model="findCtrl.newUser.lastName" type="text" class="form-control">
+          <div class="row">
+            <div class="form-group col-sm-6" ng-class="findCtrl.newUser.emailClass">
+              <span class="control-label">Email: </span>
+              <input ng-model="findCtrl.newUser.email" type="email" class="form-control">
+            </div>
+            <div class="form-group col-sm-6" ng-class="findCtrl.newUser.phoneClass">
+              <span class="control-label">Telephone: XXX-XXX-XXXX</span>
+              <input ng-model="findCtrl.newUser.phone" type="text" class="form-control">
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.emailClass">
-            <span class="control-label">Email: </span>
-            <input ng-model="findCtrl.newUser.email" type="email" class="form-control">
+          <div class="row">
+            <div class="form-group col-sm-3" ng-class="findCtrl.newUser.ageClass">
+              <span class="control-label">Age: 16-120</span>
+              <input ng-model="findCtrl.newUser.age" type="number" class="form-control">
+            </div>
+            <div class="col-sm-3" ng-class="findCtrl.newUser.genderClass">
+              <span class="control-label"> Gender:</span>
+              <select ng-model="findCtrl.newUser.gender" class="form-control col-sm-4">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="trans">Trans</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-3">
+              <span class="control-label">Maximum Rent: </span>
+              <input ng-model="findCtrl.newUser.priceMax" type="number" class="form-control">
+            </div>
+            <div class="col-sm-3" ng-class="findCtrl.newUser.smokesClass">
+              <span class="control-label"> Do you Smoke:</span>
+              <select ng-model="findCtrl.newUser.smokes" class="form-control col-sm-4">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group col-sm-6" ng-class="findCtrl.newUser.phoneClass">
-            <span class="control-label">Telephone: XXX-XXX-XXXX</span>
-            <input ng-model="findCtrl.newUser.phone" type="text" class="form-control">
+          <div class="" ng-class="findCtrl.newUser.aboutClass">
+            <span class="control-label">Write a bit about yourself here - </span>
+            <textarea ng-model="findCtrl.newUser.about" class="form-control" rows="3"></textarea>
           </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-sm-3" ng-class="findCtrl.newUser.ageClass">
-            <span class="control-label">Age: 16-120</span>
-            <input ng-model="findCtrl.newUser.age" type="number" class="form-control">
-          </div>
-          <div class="col-sm-3" ng-class="findCtrl.newUser.genderClass">
-            <span class="control-label"> Gender:</span>
-            <select ng-model="findCtrl.newUser.gender" class="form-control col-sm-4" >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="trans">Trans</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-3">
-            <span class="control-label">Maximum Rent: </span>
-            <input ng-model="findCtrl.newUser.priceMax" type="number" class="form-control">
-          </div>
-          <div class="col-sm-3" ng-class="findCtrl.newUser.smokesClass">
-            <span class="control-label"> Do you Smoke:</span>
-            <select ng-model="findCtrl.newUser.smokes" class="form-control col-sm-4" >
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-        </div>
-        <div class="" ng-class="findCtrl.newUser.aboutClass">
-          <span class="control-label" >Write a bit about yourself here - </span>
-          <textarea ng-model="findCtrl.newUser.about" class="form-control" rows="3"></textarea>
-        </div>
       </div>
+      </form> <!-- <form name="userForm"> -->
+
       <div class="modal-footer">
-          <div class="has-error pull-left text-left" ng-show="findCtrl.newUser.showError">
-            <ul>
-              <li class="control-label" ng-repeat="error in findCtrl.newUser.errorArray">{{error}}</li>
-            </ul>
-          </div>
-          <h4 ng-show="findCtrl.newUser.showError" ng-bind="findCtrl.newUser.error" class="has-error"></h4>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button ng-click="findCtrl.newUserFormValid()" data-dismiss="{{findCtrl.newUser.closeModal}}" type="button" class="btn btn-primary">Submit</button>
+        <div class="has-error pull-left text-left" ng-show="findCtrl.newUser.showError">
+          <ul>
+            <li class="control-label" ng-repeat="error in findCtrl.newUser.errorArray">{{error}}</li>
+          </ul>
+        </div>
+        <h4 ng-show="findCtrl.newUser.showError" ng-bind="findCtrl.newUser.error" class="has-error"></h4>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button ng-click="findCtrl.newUserFormValid()" data-dismiss="{{findCtrl.newUser.closeModal}}" type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>

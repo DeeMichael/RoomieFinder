@@ -1,4 +1,4 @@
-angular.module('Finder', ['ui.router'])
+angular.module('Finder', ['ui.router','ngMessages'])
   .controller('FinderController', FinderController)
   .config(MainRouter)
 

@@ -71,35 +71,45 @@
           <div class="row">
             <div class="form-group col-sm-3" ng-class="{ 'has-error': userForm.age.$touched && userForm.age.$invalid, 'has-success': userForm.age.$touched && userForm.age.$valid }">
               <span class="control-label">Age: 16-120</span>
-              <input ng-pattern="/^[16-120]$/" name="age" ng-model="findCtrl.newUser.age" type="number" class="form-control" required>
+              <input ng-max="120" ng-min="16" name="age" ng-model="findCtrl.newUser.age" type="number" class="form-control" required>
               <div ng-messages="userForm.age.$error" ng-show="userForm.age.$touched || (userForm.age.$touched && userForm.age.$invalid)">
                 <p ng-message="required">Your age is required.</p>
-                <p ng-message="pattern">Invalid age.</p>
+                <p ng-message="max">Age is above 120.</p>
+                <p ng-message="min">Age is below 16.</p>
               </div>
             </div>
-            <div class="col-sm-3" ng-class="findCtrl.newUser.genderClass">
+            <div class="col-sm-3" ng-class="{ 'has-error': userForm.gender.$touched && userForm.gender.$invalid, 'has-success': userForm.gender.$touched && userForm.gender.$valid }">
               <span class="control-label"> Gender:</span>
-              <select ng-model="findCtrl.newUser.gender" class="form-control col-sm-4">
+              <select name="gender" ng-model="findCtrl.newUser.gender" class="form-control col-sm-4" required>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="trans">Trans</option>
               </select>
+              <div ng-messages="userForm.gender.$error" ng-show="userForm.gender.$touched || (userForm.gender.$touched && userForm.gender.$invalid)">
+                <p ng-message="required">Your gender is required.</p>
+              </div>
             </div>
             <div class="form-group col-sm-3">
               <span class="control-label">Maximum Rent: </span>
               <input ng-model="findCtrl.newUser.priceMax" type="number" class="form-control">
             </div>
-            <div class="col-sm-3" ng-class="findCtrl.newUser.smokesClass">
+            <div class="col-sm-3" ng-class="{ 'has-error': userForm.smokes.$touched && userForm.smokes.$invalid, 'has-success': userForm.smokes.$touched && userForm.smokes.$valid }">
               <span class="control-label"> Do you Smoke:</span>
-              <select ng-model="findCtrl.newUser.smokes" class="form-control col-sm-4">
+              <select name="smokes" ng-model="findCtrl.newUser.smokes" class="form-control col-sm-4" required>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
+              <div ng-messages="userForm.smokes.$error" ng-show="userForm.smokes.$touched || (userForm.smokes.$touched && userForm.smokes.$invalid)">
+                <p ng-message="required">Required field.</p>
+              </div>
             </div>
           </div>
-          <div class="" ng-class="findCtrl.newUser.aboutClass">
+          <div class="" ng-class="{ 'has-error': userForm.about.$touched && userForm.about.$invalid, 'has-success': userForm.about.$touched && userForm.about.$valid }">
             <span class="control-label">Write a bit about yourself here - </span>
-            <textarea ng-model="findCtrl.newUser.about" class="form-control" rows="3"></textarea>
+            <textarea name="about" ng-model="findCtrl.newUser.about" class="form-control" rows="3" required></textarea>
+            <div ng-messages="userForm.about.$error" ng-show="userForm.about.$touched || (userForm.about.$touched && userForm.about.$invalid)">
+              <p ng-message="required">Required field.</p>
+            </div>
           </div>
       </div>
       </form> <!-- <form name="userForm"> -->

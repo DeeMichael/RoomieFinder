@@ -53,10 +53,10 @@
           <div class="row">
             <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.email.$touched && userForm.email.$invalid, 'has-success': userForm.email.$touched && userForm.email.$valid }">
               <span class="control-label">Email: </span>
-              <input name="email" ng-model="findCtrl.newUser.email" type="email" class="form-control" required>
+              <input ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/" name="email" ng-model="findCtrl.newUser.email" type="email" class="form-control" required>
               <div ng-messages="userForm.email.$error" ng-show="userForm.email.$touched || (userForm.email.$touched && userForm.email.$invalid)">
                 <p ng-message="required">Your email is required.</p>
-                <p ng-message="email">Your email is invalid.</p>
+                <p ng-message="pattern">Your email is invalid.</p>
               </div>
             </div>
             <div class="form-group col-sm-6" ng-class="{ 'has-error': userForm.phone.$touched && userForm.phone.$invalid, 'has-success': userForm.phone.$touched && userForm.phone.$valid }">
@@ -69,9 +69,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-sm-3" ng-class="findCtrl.newUser.ageClass">
+            <div class="form-group col-sm-3" ng-class="{ 'has-error': userForm.age.$touched && userForm.age.$invalid, 'has-success': userForm.age.$touched && userForm.age.$valid }">
               <span class="control-label">Age: 16-120</span>
-              <input ng-model="findCtrl.newUser.age" type="number" class="form-control">
+              <input ng-pattern="/^[16-120]$/" name="age" ng-model="findCtrl.newUser.age" type="number" class="form-control" required>
+              <div ng-messages="userForm.age.$error" ng-show="userForm.age.$touched || (userForm.age.$touched && userForm.age.$invalid)">
+                <p ng-message="required">Your age is required.</p>
+                <p ng-message="pattern">Invalid age.</p>
+              </div>
             </div>
             <div class="col-sm-3" ng-class="findCtrl.newUser.genderClass">
               <span class="control-label"> Gender:</span>

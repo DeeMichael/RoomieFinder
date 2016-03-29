@@ -50,9 +50,15 @@
             </div>
           </div>
           <div class="row">
+
+
+            <!-- <div slider ng-model="test.single" start=1 end=10></div> -->
+            <div slider ng-from="findCtrl.from" ng-to="findCtrl.to" start=0 end=100 step=5></div>
+
+
             <div class="col-sm-9 text-center">
               Minimum Age
-              <input  ng-change="findCtrl.minAgeSliderRangeBad()" type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
+              <input ng-change="findCtrl.minAgeSliderRangeBad()" type="range" min="16" max="120" ng-model="findCtrl.minAge" value="16"/>
             </div>
             <div class="col-sm-2 text-center" style="padding-left:0;">
               <span ng-bind="findCtrl.minAge" style="font-size:16px;display:inline-block;margin-top:13px;"></span>
